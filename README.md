@@ -91,5 +91,18 @@ Results will be located in **./results/quantitative/result_tables_mixamo_online.
 blender -b -P ./results/make_videos.py
 ```
 
+## Citation                                                                      
+                                                                                 
+If you find this useful, please cite our work as follows:                        
+```                                                                              
+@InProceedings{Villegas_2018_CVPR,
+  author = {Villegas, Ruben and Yang, Jimei and Ceylan, Duygu and Lee, Honglak},
+  title = {Neural Kinematic Networks for Unsupervised Motion Retargetting},
+  booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month = {June},
+  year = {2018}
+}
+```
+
 Please contact "ruben.e.villegas@gmail.com" if you have any questions.
 

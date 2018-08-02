@@ -91,7 +91,8 @@ Results will be located in **./results/quantitative/result_tables_mixamo_online.
 blender -b -P ./results/make_videos.py
 ```
 
-## Coming soon... (From human 3D pose estimates to 3D character)
+## Coming soon: From human 3D pose estimates to 3D character
+.............
 
 ## Citation                                                                      
                                                                                  

@@ -252,7 +252,7 @@ def main(gpu, batch_size, alpha, beta, gamma, omega, margin, d_arch, d_rand,
               sess, realSeq_batch, realSkel_batch, seqA_batch, skelA_batch,
               seqB_batch, skelB_batch, aeReg_batch, mask_batch, step)
 
-          outputG = gru.predict(sess, localA_batch, skelB_batch, mask_batch)
+          outputG = gru.predict(sess, seqA_batch, skelB_batch, mask_batch)
           print("step=%d/%d,  g_loss=%.5f, d_loss=%.5f, cyc_loss=%.5f, "
                 "time=%.2f+%.2f" % (step, total_steps, gl,
                                     dlf + dlr, lc, mid_time - start_time,

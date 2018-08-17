@@ -130,7 +130,7 @@ def main(gpu, prefix, mem_frac):
       if not os.path.exists(results_dir):
         os.makedirs(results_dir)
 
-      outputB, quatsB = gru.predict(sess, localA_batch, skelB_batch,
+      outputB, quatsB = gru.predict(sess, seqA_batch, skelB_batch,
                                     mask_batch)
       outputB[:, :step, :-4] = outputB[:, :step, :-4] * local_std + local_mean
       outputB[:, :step,

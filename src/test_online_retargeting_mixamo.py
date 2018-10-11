@@ -135,10 +135,10 @@ def main(gpu, prefix, mem_frac):
       outputB[:, :step, :-4] = outputB[:, :step, :-4] * local_std + local_mean
       outputB[:, :step,
               -4:] = outputB[:, :step, -4:] * global_std + global_mean
-      localA_batch[:, :step, :
-                   -4] = localA_batch[:, :step, :-4] * local_std + local_mean
-      localA_batch[:, :step,
-                   -4:] = localA_batch[:, :step, -4:] * global_std + global_mean
+      seqA_batch[:, :step, :
+                   -4] = seqA_batch[:, :step, :-4] * local_std + local_mean
+      seqA_batch[:, :step,
+                   -4:] = seqA_batch[:, :step, -4:] * global_std + global_mean
       gt = testoutseq[i][None, :max_steps].copy()
 
       tjoints = np.reshape(skelB_batch * local_std + local_mean,
@@ -165,14 +165,14 @@ def main(gpu, prefix, mem_frac):
       """Follow the same motion direction as the input and zero speeds
          that are zero in the input."""
       outputB_bvh[:, -4:] = outputB_bvh[:, -4:] * (
-          np.sign(localA_batch[0, :, -4:]) * np.sign(outputB[0, :, -4:]))
-      outputB_bvh[:, -3][np.abs(localA_batch[0, :, -3]) <= 1e-2] = 0.
+          np.sign(seqA_batch[0, :, -4:]) * np.sign(outputB[0, :, -4:]))
+      outputB_bvh[:, -3][np.abs(seqA_batch[0, :, -3]) <= 1e-2] = 0.
 
       outputB_bvh[:, :3] = gtanim.positions[:1, 0, :].copy()
       wjs, rots = put_in_world_bvh(outputB_bvh.copy(), start_rots)
       tjoints[:, 0, :] = wjs[0, :, 0].copy()
 
-      cpy_bvh = localA_batch[0].copy()
+      cpy_bvh = seqA_batch[0].copy()
       cpy_bvh[:, :3] = gtanim.positions[:1, 0, :].copy()
       bl_wjs, _ = put_in_world_bvh(cpy_bvh.copy(), start_rots)
       bl_tjoints[:, 0, :] = bl_wjs[0, :, 0].copy()
@@ -218,7 +218,7 @@ def main(gpu, prefix, mem_frac):
           outputA_=outputB[:, :step],
           outputB_=outputB[:, :step],
           quatsB=quatsB[:, :step],
-          input_=localA_batch[:, :step],
+          input_=seqA_batch[:, :step],
           gt=gt)
 
   print "Done."

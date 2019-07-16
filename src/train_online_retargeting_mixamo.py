@@ -92,8 +92,8 @@ def main(gpu, batch_size, alpha, gamma, omega, euler_ord, max_steps, min_steps,
     trainglobal[i] = (trainglobal[i] - global_mean) / global_std
     trainskel[i] = (trainskel[i] - local_mean) / local_std
 
-  models_dir = "../models/" + prefix
-  logs_dir = "../logs/" + prefix
+  models_dir = "./models/" + prefix
+  logs_dir = "./logs/" + prefix
 
   parents = np.array([
       -1, 0, 1, 2, 3, 4, 0, 6, 7, 8, 0, 10, 11, 12, 3, 14, 15, 16, 3, 18, 19,
